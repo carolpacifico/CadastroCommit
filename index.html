@@ -1,0 +1,49 @@
+<html ng-app="cadastroUser">
+<head>
+	<title>Cadastro de Usuário</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/cod.css">
+</head>
+<body ng-controller="cadastroUserCtrl">
+	<div class="jumbotron" >
+		<h3 id= titulo>{{app}}</h3>
+		<table ng-show="usuarios.length > 0" class="table">
+			<tr>
+				<th></th>
+				<th>Nome</th>
+				<th>Telefone</th>
+        <th>Telefone 2</th>
+        <th> Endereço </th>
+        <th> Endereço 2</th>
+        <th> E-mail </th>
+        <th> E-mail 2 </th>
+				<th></th>
+			</tr>
+			<tr class="fundoTitulo" ng-class="{'selecionado negrito': usuario.selecionado}" ng-repeat="usuario in usuarios">
+				<td><input type="checkbox" ng-model="usuario.selecionado"/></td>
+				<td>{{usuario.nome}}</td>
+				<td>{{usuario.telefone}}</td>
+        <td>{{usuario.telefone2}}</td>
+        <td>{{usuario.endereco}}</td>
+        <td>{{usuario.endereco2}}</td>
+        <td>{{usuario.email}}</td>
+        <td>{{usuario.email2}}</td>
+				<td><div style="width: 20px; height: 20px;" ng-style="{'background-color': usuario.cor}"></div></td>
+			</tr>
+		</table>
+		<hr/>
+		<input class="form-control" type="text" ng-model="usuario.nome" placeholder="Nome" min-width=2px/>
+		<input class="form-control" type="number" ng-model="usuario.telefone" placeholder="Telefone" />
+    <input class="form-control" type="number" ng-model="usuario.telefone2" placeholder="Telefone 2"/>
+    <input class="form-control" type="text" ng-model="usuario.endereco" placeholder="Endereço" />
+    <input class="form-control" type="text" ng-model="usuario.endereco2" placeholder="Endereço 2"/>
+    <input class="form-control" type="email" ng-model="usuario.email" placeholder="E-mail" />
+    <input class="form-control" type="email" ng-model="usuario.email2" placeholder="E-mail 2"/>
+		<br>
+		<button class="btn btn-primary btn-block" ng-click="adicionarUsuario(usuario)" ng-disabled="!usuario.nome || !usuario.telefone || !usuario.email || !usuario.endereco">Cadastrar</button>
+		<button class="btn btn-danger btn-block" ng-click="apagarUsuarios(usuarios)" ng-if="isUsuarioSelecionado(usuarios)">Remover Cadastro</button>
+	</div>
+	<script src="angular/angular.js"></script>
+	<script src="js/controle.js"></script>
+	</body>
+</html>
